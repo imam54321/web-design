@@ -8,7 +8,7 @@ import CardProduct from './components/CardProduct';
 import wave from './assets/wave-haikei (3).png'
 import wave_bot from './assets/wave-haikei (4).png'
 import SpeakerCard from './ui/SpeakerCard';
-import Section from './components/Section';
+// import Section from './components/Section';
 import useInView from './hooks/useInView';
 
 
@@ -16,7 +16,7 @@ function App() {
    const [heroRef, heroShow] = useInView();
    const [aboutRef, aboutShow] = useInView();
    const [speakerRef, speakerShow] = useInView();
-   const [collapseRef, collapseShow] = useInView();
+  //  const [collapseRef, collapseShow] = useInView();
    const speakers = [ 
    { 
      name: "Dery Agung Triyadi", 
