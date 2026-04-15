@@ -120,10 +120,10 @@ belakang atau tingkat keahlian.", `
           <div className="flex justify-center gap-6 mt-10 flex-wrap">
 
           {[
-            {title:'IT Competition',desc:'...'},
-            {title:'IT Workshop',desc:'...'},
-            {title:'IT Seminar',desc:'...'},
-            {title:'IT Talkshow',desc:'...'},
+            {title:'IT Competition',desc:'Kompetisi “From Creation to Innovation” mengajak generasi muda untuk mengembangkan inovasi dan kreativitas guna membentuk kelompok yang memiliki potensi luar biasa, yang mampu mewujudkan masa depan yang berkelanjutan.'},
+            {title:'IT Workshop',desc:`Workshop 'AI for a Sustainable Future: The Role of Z Generation in the Digital Era' membekali Gen Z dengan keterampilan praktis AI untuk menciptakan solusi berkelanjutan.'`},
+            {title:'IT Seminar',desc:'Seminar nasional ini membahas “Human-AI Integration: Merancang Arsitektur Kolaboratif, Bukan Kompetitif” untuk mengembangkan potensi diri dan pengetahuan teknologi lebih dalam lagi.'},
+            {title:'IT Talkshow',desc:'Talkshow “Humanizing Technology: Kolaborasi Manusia dan AI di Masa Depan” membahas peran manusia dalam memanfaatkan AI untuk solusi berkelanjutan dan peningkatan teknologi.'},
           ].map((item, i) => (
 
            <div
