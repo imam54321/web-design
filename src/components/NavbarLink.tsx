@@ -7,7 +7,7 @@ interface NavLinkProps {
   isActive?: boolean;
 }
 
-const NavLink: React.FC<NavLinkProps> = ({
+export const NavLink: React.FC<NavLinkProps> = ({
   label,
   href,
   icon,

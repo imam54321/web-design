@@ -1,14 +1,13 @@
-// import './App.css';
 import Button from "../components/Button";
 import {Collapse} from '../ui/Collapse';
-import maskot from '../assets/maskot 2.png';
-import logo from '../assets/logo-full.png'
-// import Header from '../components/Navbar';
+import talkshow from '../assets/maskot mic.png'
+import ts1 from '../assets/talkshow cyber_20251115_104447_0002.png'
+import ts2 from '../assets/workshop AI_20251115_104446_0001.png'
+import ts3 from '../assets/workshop mobile.png'
 import CardProduct from '../components/CardProduct';
 import wave from '../assets/wave-haikei (3).png'
 import wave_bot from '../assets/wave-haikei (4).png'
 import SpeakerCard from '../ui/SpeakerCard';
-// import Section from './components/Section';
 import useInView from '../hooks/useInView';
 
 
@@ -19,22 +18,19 @@ function App() {
   //  const [collapseRef, collapseShow] = useInView();
    const speakers = [ 
    { 
-     name: "Dery Agung Triyadi", 
-     role: "Aws Indonesia", 
-     imageUrl: 
-       "https://www.invofest-harkatnegeri.com/assets/seminar/Seminar%20Dery.png", 
+     name: "Danang Avan Maulana", 
+     role: "Security Analyst & Founder | Contributor Tegalsec", 
+     imageUrl: ts1,
    }, 
    { 
-     name: "Sowam Habibi", 
-     role: "Google Indonesia", 
-     imageUrl: 
-       "https://www.invofest-harkatnegeri.com/assets/seminar/seminar%20sowam.png", 
+     name: "M.Dendi Purwanto", 
+     role: "Software Engineering from PT.Mayor Kernel Supernova", 
+     imageUrl: ts2,
    }, 
    { 
      name: "Lhuqita Fazry", 
-     role: "Mobile Development Developer, Founder Rumah Coding Indonesia", 
-     imageUrl: 
-       "https://www.invofest-harkatnegeri.com/assets/workshop/workshop%20mobile.png", 
+     role: "Developer & Founder Rumah Coding Indonesia", 
+     imageUrl: ts3,
    }, 
  ]; 
 
@@ -78,14 +74,14 @@ belakang atau tingkat keahlian.", `
         <div className="flex flex-col gap-4">
 
        
-          <div className={`reveal ${heroShow ? "show animate-left" : ""}`}>
-            <img src={logo} alt="" className='w-60' />
+          <div className={`reveal  ${heroShow ? "show animate-left" : ""}`}>
+            <h1 className="text-6xl mb-2 font-serif font-bold text-red-900">IT Workshop</h1>
+            <h3 className="text-4xl font-sans font-semibold text-red-900 w-200">“AI for a Sustainable Future: The Role of Z Generation in the Digital Era” </h3>
           </div>
 
      
           <p className={`text-2xl w-3xl reveal ${heroShow ? "show animate-left" : ""}`}>
-            Invofest atau Informatics Vocational Festival adalah event tahunan dan event terbesar 
-            dari Himpunan Mahasiswa Teknik Informatika / HIMATIV Universitas Harkat Negeri.
+          IT Workshop ini menjembatani antara potensi Generasi Z dan kekuatan AI untuk menciptakan masa depan yang berkelanjutan. Peserta akan dibekali wawasan dan alat untuk mentransformasi ide-ide inovatif menjadi solusi lingkungan yang nyata dan terukur di era digital.  
           </p>
 
         </div>
@@ -98,7 +94,7 @@ belakang atau tingkat keahlian.", `
 
       {/* KANAN */}
       <div className={`w-1/2 flex justify-center reveal ${heroShow ? "show animate-right" : ""}`}>
-        <img src={maskot} alt="maskot" className="w-130 ml-20" />
+        <img src={talkshow} alt="maskot" className="w-130 ml-20" />
       </div>
 
     </div>

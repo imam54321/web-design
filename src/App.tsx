@@ -1,36 +1,44 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
+import TalkShow from "./pages/TalkShow";
+import Seminar from "./pages/Seminar";
+import Workshop from "./pages/WorkShop";
+import Competition from "./pages/Competition";
+import MainLayout from "./layouts/MainLayouts";
 import RegisterForm from "./pages/RegisterForm";
 import Home from "./pages/Home";
+// import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
-
-const Dashboard = () => (
-  <div className="p-10 text-center">
-    <h1 className="text-3xl font-bold">Dashboard</h1>
-  </div>
-);
+import AuthLayout from "./layouts/AuthLayout";
+import LoginForm from "./pages/LoginForm";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-200">
-        <Navbar />
 
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<RegisterForm />} />
-          
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
+          <Route element= {<MainLayout/>}>
+              <Route path="/" element={<Home />} />
+              <Route path = "/talkshow" element={<TalkShow/>}/>
+              <Route path = "/seminar" element={<Seminar/>}/>
+              <Route path = "/competition" element={<Competition/>}/>
+              <Route path = "/workshop" element={<Workshop/>}/>
+              
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Home />
+                  </ProtectedRoute>
+                }
+              />
+          </Route> 
 
-      </div>
+          <Route element = {<AuthLayout/>}>
+                <Route path="/register" element={<RegisterForm/>}></Route>
+                <Route path="/login" element={<LoginForm/>}></Route>
+          </Route>
+        </Routes>
     </BrowserRouter>
   );
 }

@@ -17,7 +17,7 @@ export const InputText : React.FC<InputTextProps> = ({
                         <input className="border text-sm rounded-xl p-2"
                         type="text"
                         {...register(name)}
-                        placeholder="  Masukan Email Anda" />
+                        placeholder="  Masukan Nama Anda" />
                         {error && <p className="text-red-600">{error}</p>}
                     </div>
     )

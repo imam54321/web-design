@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {z} from "zod" ;
 import { InputPassword } from "../ui/InputPass";
 import Button from "../components/Button";
+import { Link } from "react-router-dom";
 type FormLogin ={
     email:string;
     password:string;
@@ -24,8 +25,8 @@ export default function LoginForm() {
         console.log(data);
     }
     return (
-        <div>
-            <div className="w-120 h-100 mx-auto bg-blue-300 mt-50 px-3 rounded-2xl  ">
+        <div className="flex justify-center mt-10">
+             <div className="w-120 max-w-7xl bg-white p-5 rounded-2xl shadow-xl">
                 <h1 className="text-center text-2xl font-bold mb-10 ">Silahkan Login</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <InputText 
@@ -42,8 +43,11 @@ export default function LoginForm() {
                     />
                     
                     <div>
-                        <Button title= "Login" variant="primary"/>
+                        <Button title= "Login" variant="primary" type="submit"/>
                     </div>
+                    <div> 
+                         Belum punya akun? <Link to="/register">Daftar Disini</Link>
+                    </div> 
                 </form>
             </div>
         </div>

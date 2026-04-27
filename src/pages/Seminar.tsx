@@ -1,8 +1,7 @@
 // import './App.css';
 import Button from "../components/Button";
 import {Collapse} from '../ui/Collapse';
-import maskot from '../assets/maskot 2.png';
-import logo from '../assets/logo-full.png'
+import seminar from '../assets/maskot gaya 5.png'
 // import Header from '../components/Navbar';
 import CardProduct from '../components/CardProduct';
 import wave from '../assets/wave-haikei (3).png'
@@ -29,12 +28,6 @@ function App() {
      role: "Google Indonesia", 
      imageUrl: 
        "https://www.invofest-harkatnegeri.com/assets/seminar/seminar%20sowam.png", 
-   }, 
-   { 
-     name: "Lhuqita Fazry", 
-     role: "Mobile Development Developer, Founder Rumah Coding Indonesia", 
-     imageUrl: 
-       "https://www.invofest-harkatnegeri.com/assets/workshop/workshop%20mobile.png", 
    }, 
  ]; 
 
@@ -78,14 +71,14 @@ belakang atau tingkat keahlian.", `
         <div className="flex flex-col gap-4">
 
        
-          <div className={`reveal ${heroShow ? "show animate-left" : ""}`}>
-            <img src={logo} alt="" className='w-60' />
+          <div className={`reveal  ${heroShow ? "show animate-left" : ""}`}>
+            <h1 className="text-6xl mb-2 font-serif font-bold text-red-900">IT SEMINAR</h1>
+            <h3 className="text-4xl font-sans font-semibold text-red-900 w-200">“Human-AI Integration: Merancang Arsitektur Kolaboratif, Bukan Kompetitif”</h3>
           </div>
 
      
           <p className={`text-2xl w-3xl reveal ${heroShow ? "show animate-left" : ""}`}>
-            Invofest atau Informatics Vocational Festival adalah event tahunan dan event terbesar 
-            dari Himpunan Mahasiswa Teknik Informatika / HIMATIV Universitas Harkat Negeri.
+            Seminar nasional yang membahas strategi dan arsitektur teknologi untuk menciptakan sistem di mana manusia dan AI bekerja sebagai mitra yang sinergis.Yang bertujuan mengubah paradigma dari persaingan menjadi kolaborasi, serta meningkatkan pengetahuan peserta dalam merancang teknologi AI yang berpusat pada manusia.
           </p>
 
         </div>
@@ -98,7 +91,7 @@ belakang atau tingkat keahlian.", `
 
       {/* KANAN */}
       <div className={`w-1/2 flex justify-center reveal ${heroShow ? "show animate-right" : ""}`}>
-        <img src={maskot} alt="maskot" className="w-130 ml-20" />
+        <img src={seminar} alt="maskot" className="w-130 ml-20" />
       </div>
 
     </div>
@@ -141,7 +134,7 @@ belakang atau tingkat keahlian.", `
             <img src={wave_bot} alt="" className='w-full opacity-30'/>
           </div>
       <section ref={speakerRef} id="speaker" className="py-24">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10 px-3"> 
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 px-3"> 
                 {speakers.map((speaker, index) => ( 
                    <div
                       key={index}

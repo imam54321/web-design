@@ -6,7 +6,7 @@ import {z} from "zod" ;
 import { InputPassword } from "../ui/InputPass";
 import Button from "../components/Button";
 import { InputTextArea } from "../ui/InputTextArea";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SelectInput } from "../ui/SelectInput";
 
 type FormRegist ={
@@ -47,7 +47,7 @@ export default function RegisterForm() {
 
     return (
         <div className="flex justify-center mt-10">
-            <div className="w-120 max-w-2xl bg-white p-5 rounded-2xl shadow-xl">
+            <div className="w-120 max-w-7xl bg-white p-5 rounded-2xl shadow-xl">
                 
                 <h1 className="text-center text-2xl font-bold mb-5">
                     Form Register
@@ -98,7 +98,9 @@ export default function RegisterForm() {
                         error={errors.password_confirm?.message} />
                 <div className=" h-20 flex flex-col justify-center items-center">
                     <Button title="Register" variant="primary" type="submit"/>
-                    <p className="">Atau sudah punya akun? <span className="text-blue-600">Login disini</span></p>
+                       <div> 
+                         Atau sudah punya akun? <Link to="/login">Masuk disini</Link>
+                       </div> 
                 </div>
                 </form>
             </div>
