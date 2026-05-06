@@ -5,6 +5,7 @@ import {z} from "zod" ;
 import { InputPassword } from "../ui/InputPass";
 import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../store/useAuthStore";
 type FormLogin ={
     email:string;
     password:string;
@@ -19,6 +20,7 @@ const schema = z.object({
 export default function LoginForm() {
 
     const navigate = useNavigate();
+    const login = useAuthStore((state) => state.login);
 
     const { register, handleSubmit, reset, formState:{errors} } = useForm<FormLogin>({
         resolver : zodResolver(schema)
@@ -27,9 +29,16 @@ export default function LoginForm() {
 
     const onSubmit = (data: FormLogin) => {
         console.log("Regist Succes" ,data);
-        localStorage.setItem("isLogin", "true");
+        if(data.email == "fauzanimam955@gmail.com" && data.password == "admin1234"){
+            alert("Login berhasil")
+        login(data.email);
+        // localStorage.setItem("isLogin", "true");
         reset();
-        navigate("/");
+        navigate("/dashboard");
+        } else {
+            alert("Email atau Password anda salah !")
+            console.log("Regist Gagal", data)
+        }
     };
     return (
         <div className="flex justify-center mt-10">
@@ -58,6 +67,5 @@ export default function LoginForm() {
                 </form>
             </div>
         </div>
-
     )
 }

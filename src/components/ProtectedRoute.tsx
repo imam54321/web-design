@@ -1,13 +1,12 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet} from "react-router-dom";
+import { useAuthStore } from "../store/useAuthStore";
 
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const isLogin = localStorage.getItem("isLogin");
 
-  if (!isLogin) {
-    return <Navigate to="/register" />;
-  }
-
-  return <>{children}</>;
-};
-
+function ProtectedRoute() { 
+const isAuthenticated = useAuthStore((state) => state.isAuthenticated); 
+if (!isAuthenticated) { 
+return <Navigate to="/login" replace />; 
+} 
+return <Outlet />;
+}
 export default ProtectedRoute;
