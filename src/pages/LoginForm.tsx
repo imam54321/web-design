@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { InputText } from "../ui/InputText";
+import  InputText  from "../ui/InputText";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {z} from "zod" ;
 import { InputPassword } from "../ui/InputPass";
