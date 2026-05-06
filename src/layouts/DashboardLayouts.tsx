@@ -1,7 +1,7 @@
 import { Outlet, useNavigate, Link } from "react-router-dom";
 // import Navbar from "../components/Navbar";
 import { useAuthStore } from "../store/useAuthStore";
-import { LayoutDashboard, User, List } from "lucide-react";
+import { LayoutDashboard, User, List,AwardIcon} from "lucide-react";
 
 export default function DashboardLayout(){
     const logout = useAuthStore ((state) => state.logout);
@@ -32,6 +32,10 @@ export default function DashboardLayout(){
                             <li className="flex items-center gap-3 hover:text-red-600 transition">
                                 <List size={20} />
                                 <Link to="/dashboard/category">Category</Link>
+                            </li>
+                            <li className="flex items-center gap-3 hover:text-red-600 transition">
+                                   <AwardIcon size = {20}/> 
+                                     <Link to="/dashboard/event">Event</Link>
                             </li>
                         </ul>
                 </div>

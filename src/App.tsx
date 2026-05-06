@@ -16,6 +16,8 @@ import DashboardLayout from "./layouts/DashboardLayouts";
 import CategoryIndex from "./pages/CategoryIndex";
 import Pembicara from "./pages/PembicaraIndex";
 import CategoryCreate from "./pages/CategoryCreate";
+import Events from "./pages/EventIndex";
+import EventsCreate from "./pages/EventCreate";
 function App() {
   return (
     <BrowserRouter>
@@ -40,6 +42,8 @@ function App() {
                 <Route path="/dashboard/category" element={<CategoryIndex/>}></Route>
                 <Route path="/dashboard/category/create" element={<CategoryCreate/>}></Route>
                 <Route path="/dashboard/pembicara" element={<Pembicara/>}></Route>
+                <Route path="/dashboard/event" element={<Events/>}></Route>
+                <Route path="/dashboard/event/create" element={<EventsCreate/>}></Route>
                 
               </Route>
               </Route>
