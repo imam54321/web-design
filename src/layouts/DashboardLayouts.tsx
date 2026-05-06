@@ -1,6 +1,7 @@
 import { Outlet, useNavigate, Link } from "react-router-dom";
 // import Navbar from "../components/Navbar";
 import { useAuthStore } from "../store/useAuthStore";
+import { LayoutDashboard, User, List } from "lucide-react";
 
 export default function DashboardLayout(){
     const logout = useAuthStore ((state) => state.logout);
@@ -20,13 +21,16 @@ export default function DashboardLayout(){
                 </div>
                 <div>
                         <ul className=" justify-between flex flex-col p-5 text-lg gap-6 w-full">
-                            <li>
-                                <Link to="/dashboard"> Dashboard</Link>
+                            <li className="flex items-center gap-3 hover:text-red-600 transition">
+                                <LayoutDashboard size={20} />
+                                <Link to="/dashboard">Dashboard</Link>
                             </li>
-                            <li>
+                            <li className="flex items-center gap-3 hover:text-red-600 transition">
+                                <User size={20} />
                                 <Link to="/dashboard/pembicara">Pembicara</Link>
                             </li>
-                            <li>
+                            <li className="flex items-center gap-3 hover:text-red-600 transition">
+                                <List size={20} />
                                 <Link to="/dashboard/category">Category</Link>
                             </li>
                         </ul>

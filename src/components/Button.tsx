@@ -1,10 +1,17 @@
 interface ButtonProps {
   title: string;
   variant?: "primary" | "outline";
-  type? : "button" | "submit";
+  type?: "button" | "submit";
+  onClick?: () => void;
+  className?: string;
 }
-
-const Button: React.FC<ButtonProps> = ({ title, variant = "primary" , type="button"}) => {
+const Button: React.FC<ButtonProps> = ({
+  title,
+  variant = "primary",
+  type = "button",
+  onClick,
+  className = "",
+}) => {
   const baseStyle = "px-5 py-3 rounded-lg font-medium transition ";
 
   const variants = {
@@ -13,10 +20,13 @@ const Button: React.FC<ButtonProps> = ({ title, variant = "primary" , type="butt
   };
 
   return (
-    <button type={type} className={`${baseStyle} ${variants[variant]}`}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={`${baseStyle} ${variants[variant]} ${className}`}
+    >
       {title}
     </button>
   );
 };
-
 export default Button;

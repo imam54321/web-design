@@ -16,10 +16,6 @@ import DashboardLayout from "./layouts/DashboardLayouts";
 import CategoryIndex from "./pages/CategoryIndex";
 import Pembicara from "./pages/PembicaraIndex";
 import CategoryCreate from "./pages/CategoryCreate";
-console.log("ProtectedRoute:", ProtectedRoute);
-console.log("DashboardLayout:", DashboardLayout);
-console.log("MainLayout:", MainLayout);
-console.log("AuthLayout:", AuthLayout);
 function App() {
   return (
     <BrowserRouter>

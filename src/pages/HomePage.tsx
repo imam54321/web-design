@@ -30,7 +30,6 @@ export default function DashboardIndex() {
                 key={index}
                 title={item.title}
                 value={item.label ?? item.value.toString()}
-                change="+10%"
                 color="bg-blue-300"
                 icon={<User size={16} />}
               />

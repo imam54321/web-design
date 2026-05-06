@@ -11,40 +11,22 @@ import foto5 from "../assets/talkshow ichsan_20251115_104446_0000.png";
 import foto6 from "../assets/talkshow zaim.png";
 import foto7 from "../assets/workshop mobile.png";
 import foto8 from "../assets/workshop AI_20251115_104446_0001.png";
+// import Button from "../components/Button";
 
 export default function Pembicara() {
   const [speakerRef, speakerShow] = useInView();
 
-  const [speakers, setSpeakers] = useState([
+  const [speakers] = useState([
     { name: "Dery", role: "AWS", imageUrl: foto2 },
-    { name: "Cyber", role: "Talkshow", imageUrl: foto3 },
+    { name: "Danang", role: "Talkshow", imageUrl: foto3 },
     { name: "Sowam", role: "Google", imageUrl: foto1 },
     { name: "Daffa", role: "Talkshow", imageUrl: foto4 },
     { name: "Ichsan", role: "Talkshow", imageUrl: foto5 },
     { name: "Zaim", role: "Talkshow", imageUrl: foto6 },
-    { name: "Mobile", role: "Workshop", imageUrl: foto7 },
-    { name: "AI", role: "Workshop", imageUrl: foto8 },
+    { name: "Lhuqita", role: "Workshop", imageUrl: foto7 },
+    { name: "Dendi", role: "Workshop", imageUrl: foto8 },
   ]);
 
-  const [form, setForm] = useState({
-    name: "",
-    role: "",
-  });
-
-  const handleAdd = () => {
-    if (!form.name || !form.role) return;
-
-    setSpeakers((prev) => [
-      ...prev,
-      {
-        name: form.name,
-        role: form.role,
-        imageUrl: foto1,
-      },
-    ]);
-
-    setForm({ name: "", role: "" });
-  };
 
   return (
     <section
@@ -67,36 +49,6 @@ export default function Pembicara() {
           </div>
         ))}
       </div>
-
-      {/* FORM */}
-      <div className="mb-10 mt-10 flex gap-4">
-        <input
-          type="text"
-          placeholder="Nama"
-          value={form.name}
-          onChange={(e) =>
-            setForm({ ...form, name: e.target.value })
-          }
-          className="border p-2 rounded"
-        />
-
-        <input
-          type="text"
-          placeholder="Role"
-          value={form.role}
-          onChange={(e) =>
-            setForm({ ...form, role: e.target.value })
-          }
-          className="border p-2 rounded"
-        />
-
-        <button
-          onClick={handleAdd}
-          className="bg-red-600 text-white px-4 rounded"
-        >
-          Tambah
-        </button>
-      </div>
-    </section>
+      </section>
   );
 }
