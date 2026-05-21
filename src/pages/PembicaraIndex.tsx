@@ -1,54 +1,99 @@
 import SpeakerCard from "../ui/SpeakerCard";
 import useInView from "../hooks/useInView";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Button from "../components/Button";
+import { API_URL } from "../services/api";
 
-// images
-import foto1 from "../assets/seminar sowam_20251115_104314_0002.png";
-import foto2 from "../assets/Seminar Dery_20251115_104313_0001.png";
-import foto3 from "../assets/talkshow cyber_20251115_104447_0002.png";
-import foto4 from "../assets/talkshow daffa_20251115_104314_0003.png";
-import foto5 from "../assets/talkshow ichsan_20251115_104446_0000.png";
-import foto6 from "../assets/talkshow zaim.png";
-import foto7 from "../assets/workshop mobile.png";
-import foto8 from "../assets/workshop AI_20251115_104446_0001.png";
-// import Button from "../components/Button";
+type Speaker = {
+  id: number;
+  name: string;
+  role: string;
+  image: string;
+};
 
 export default function Pembicara() {
   const [speakerRef, speakerShow] = useInView();
+  const [speakers, setSpeakers] = useState<Speaker[]>([]);
 
-  const [speakers] = useState([
-    { name: "Dery", role: "AWS", imageUrl: foto2 },
-    { name: "Danang", role: "Talkshow", imageUrl: foto3 },
-    { name: "Sowam", role: "Google", imageUrl: foto1 },
-    { name: "Daffa", role: "Talkshow", imageUrl: foto4 },
-    { name: "Ichsan", role: "Talkshow", imageUrl: foto5 },
-    { name: "Zaim", role: "Talkshow", imageUrl: foto6 },
-    { name: "Lhuqita", role: "Workshop", imageUrl: foto7 },
-    { name: "Dendi", role: "Workshop", imageUrl: foto8 },
-  ]);
+  useEffect(() => {
+    fetch(`${API_URL}/speakers`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
 
+        setSpeakers(data.data);
+      })
+      .catch((error) => {
+        console.error("Gagal mengambil data speakers:", error);
+      });
+  }, []);
+
+  const handleDelete = async (id: number) => {
+    const confirmDelete = confirm("Yakin ingin menghapus pembicara ini?");
+
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(`${API_URL}/speakers/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Gagal menghapus pembicara");
+      }
+
+      setSpeakers((prev) => prev.filter((speaker) => speaker.id !== id));
+      alert("Pembicara berhasil dihapus");
+    } catch (error) {
+      console.error(error);
+      alert("Pembicara gagal dihapus");
+    }
+  };
 
   return (
     <section
       ref={speakerRef}
-      className="py-16 min-h-screen flex flex-col items-center"
+      className="py-16 px-6 min-h-screen flex flex-col items-center"
     >
-      <h1 className="mb-16 text-5xl font-bold text-center">
+      <h1 className="mb-16 text-4xl md:text-5xl font-bold text-center">
         Narasumber Invofest
       </h1>
 
-      {/* SPEAKER LIST */}
       <div
-        className={` grid grid-cols-3 overflow-x-auto gap-5 transition-all duration-700 ${
+        className={`w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 transition-all duration-700 ${
           speakerShow ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
-        {speakers.map((speaker, index) => (
-          <div key={index} className="mx-5 w-64 flex-shrink-0">
-            <SpeakerCard {...speaker} />
+        {speakers.map((speaker) => (
+          <div key={speaker.id} className="flex flex-col items-center gap-3">
+            <SpeakerCard
+              name={speaker.name}
+              role={speaker.role}
+              image={speaker.image}
+            />
+
+            <div className="flex gap-3">
+              <Link to={`/dashboard/pembicara/edit/${speaker.id}`}>
+                <Button title="Edit" variant="outline" type="button" />
+              </Link>
+
+              <Button
+                title="Delete"
+                variant="primary"
+                type="button"
+                onClick={() => handleDelete(speaker.id)}
+              />
+            </div>
           </div>
         ))}
       </div>
-      </section>
+      <Link
+        to="/dashboard/pembicara/create"
+        className="inline-block mb-6 px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+      >
+        + Tambah Pembicara
+      </Link>
+    </section>
   );
 }

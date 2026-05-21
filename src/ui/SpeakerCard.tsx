@@ -1,31 +1,25 @@
 interface SpeakerCardProps {
   name: string;
   role: string;
-  imageUrl: string;
+  image: string;
 }
 
 export default function SpeakerCard({
   name,
   role,
-  imageUrl,
+  image,
 }: SpeakerCardProps) {
   return (
-    <div className="cursor-pointer flex flex-col items-center gap-4 animate-up group">
-      <div className="relative h-1/3 z-1 ">
-        <img
-          src={imageUrl}
-          alt={name}
-          className="h-64 w-64 rounded-full border-10 border-red-900 mx-auto group-hover:scale-105 transition-transform duration-300 object-cover"
-        />
-      </div>
+    <div className="w-64 bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+      <img
+        src={image}
+        alt={name}
+        className="w-full h-72 object-cover"
+      />
 
-      <div className="cursor-pointer flex flex-col items-center h-2/3 border-4 border-red-900 w-full p-4 rounded-lg relative py-10 shadow-xl shadow-black/20 group-hover:shadow-2xl group-hover:shadow-black/40 transition-all duration-300">
-        <div className="absolute bottom-0 px-4 py-6 rounded-lg min-w-full h-full flex flex-col items-center gap-2 group-hover:bg-red-200 backdrop-blur-sm transition-all duration-300"></div>
-
-        <div className="absolute left-0 right-0 bottom-0 items-center justify-center p-4 flex flex-col gap-2">
-          <h3 className="text-xl text-red-900 font-semibold">{name}</h3>
-          <p className="text-xs text-gray-600 text-center">{role}</p>
-        </div>
+      <div className="p-4 text-center">
+        <h2 className="text-xl font-bold text-gray-800">{name}</h2>
+        <p className="text-sm text-gray-500 mt-1">{role}</p>
       </div>
     </div>
   );

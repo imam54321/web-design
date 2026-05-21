@@ -7,12 +7,12 @@ import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
 type FormLogin ={
-    email:string;
+    nim:string;
     password:string;
 };
 
 const schema = z.object({
-    email : z.string().min(1, "Email harus diisi"),
+    nim : z.string().min(1, "nim harus diisi"),
     password : z.string().min(8, "Password minimal 8 Karakter"),
 });
 
@@ -29,14 +29,14 @@ export default function LoginForm() {
 
     const onSubmit = (data: FormLogin) => {
         console.log("Regist Succes" ,data);
-        if(data.email == "fauzanimam955@gmail.com" && data.password == "admin1234"){
+        if(data.nim == "24090084" && data.password == "24090084"){
             alert("Login berhasil")
-        login(data.email);
+        login(data.nim);
         // localStorage.setItem("isLogin", "true");
         reset();
         navigate("/dashboard");
         } else {
-            alert("Email atau Password anda salah !")
+            alert("nim atau Password anda salah !")
             console.log("Regist Gagal", data)
         }
     };
@@ -46,10 +46,10 @@ export default function LoginForm() {
                 <h1 className="text-center text-2xl font-bold mb-10 ">Silahkan Login</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <InputText 
-                    label = "Email"
-                    name = "email"
+                    label = "Nim"
+                    name = "nim"
                     register = {register}
-                    error = {errors.email?.message}
+                    error = {errors.nim?.message}
                     />
                     <InputPassword 
                     label = "Password"

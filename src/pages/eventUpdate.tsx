@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import InputText from "../ui/InputText";
 import Button from "../components/Button";
 import { API_URL } from "../services/api";
@@ -9,7 +10,6 @@ type EventForm = {
   description: string;
   location: string;
   dateEvent: string;
-  image: string;
   categoryId: string;
   pembicaraId: string;
 };
@@ -19,14 +19,17 @@ type Category = {
   name: string;
 };
 
-type Speaker = {
+type Pembicara = {
   id: number;
   name: string;
 };
 
-export default function EventCreate() {
+export default function EventUpdate() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
   const [categories, setCategories] = useState<Category[]>([]);
-  const [speakers, setSpeakers] = useState<Speaker[]>([]);
+  const [pembicara, setPembicara] = useState<Pembicara[]>([]);
 
   const {
     register,
@@ -36,7 +39,7 @@ export default function EventCreate() {
   } = useForm<EventForm>();
 
   useEffect(() => {
-      fetch(`${API_URL}/categories`)
+    fetch(`${API_URL}/categories`)
       .then((res) => res.json())
       .then((data) => {
         setCategories(Array.isArray(data) ? data : data.data);
@@ -45,52 +48,64 @@ export default function EventCreate() {
     fetch(`${API_URL}/speakers`)
       .then((res) => res.json())
       .then((data) => {
-        setSpeakers(Array.isArray(data) ? data : data.data);
+        setPembicara(Array.isArray(data) ? data : data.data);
       });
-  }, []);
+
+    fetch(`${API_URL}/events/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        const event = data.data ?? data;
+
+        reset({
+          title: event.title,
+          description: event.description,
+          location: event.location,
+          dateEvent: event.dateEvent?.split("T")[0],
+          categoryId: String(event.categoryId),
+          pembicaraId: String(event.pembicaraId),
+        });
+      })
+      .catch((error) => {
+        console.error("Gagal mengambil detail event:", error);
+      });
+  }, [id, reset]);
 
   const onSubmit = async (data: EventForm) => {
     try {
-      const payload = {
-        title: data.title,
-        description: data.description,
-        location: data.location,
-        dateEvent: data.dateEvent,
-        image: data.image,
-        categoryId: Number(data.categoryId),
-        pembicaraId: Number(data.pembicaraId),
-      };
-
-      console.log("PAYLOAD EVENT:", payload);
-
-      const response = await fetch(`${API_URL}/events`, {
-        method: "POST",
+      const response = await fetch(`${API_URL}/events/${id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          title: data.title,
+          description: data.description,
+          location: data.location,
+          dateEvent: data.dateEvent,
+          categoryId: Number(data.categoryId),
+          pembicaraId: Number(data.pembicaraId),
+        }),
       });
 
       const result = await response.json();
-      console.log("RESPONSE EVENT:", result);
 
       if (!response.ok) {
-        alert(result.message || "Gagal menambahkan event");
+        alert(result.message || "Event gagal diupdate");
         return;
       }
 
-      alert("Event berhasil ditambahkan");
-      reset();
+      alert("Event berhasil diupdate");
+      navigate("/dashboard/event");
     } catch (error) {
-      console.error("CREATE EVENT ERROR:", error);
-      alert("Event gagal ditambahkan");
+      console.error("UPDATE EVENT ERROR:", error);
+      alert("Event gagal diupdate");
     }
   };
 
   return (
     <div className="py-10">
       <h1 className="text-center mb-10 font-bold text-3xl">
-        Tambah Event
+        Edit Event
       </h1>
 
       <form
@@ -125,13 +140,6 @@ export default function EventCreate() {
           error={errors.dateEvent?.message}
         />
 
-        <InputText<EventForm>
-          label="Image"
-          name="image"
-          register={register}
-          error={errors.image?.message}
-        />
-
         <select
           {...register("categoryId")}
           className="border p-3 rounded-lg"
@@ -149,16 +157,16 @@ export default function EventCreate() {
           className="border p-3 rounded-lg"
         >
           <option value="">Pilih Pembicara</option>
-          {speakers.map((speaker) => (
-            <option key={speaker.id} value={speaker.id}>
-              {speaker.name}
+          {pembicara.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.name}
             </option>
           ))}
         </select>
 
         <Button
           type="submit"
-          title="Tambah Event Baru"
+          title="Update Event"
           variant="primary"
           className="mt-6"
         />
