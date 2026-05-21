@@ -15,7 +15,7 @@ export default function MarqueeSpeakers({ speakers }: { speakers: Speaker[] }) {
             <SpeakerCard
               name={item.name}
               role={item.role}
-              imageUrl={item.imageUrl}
+              image={item.imageUrl}
             />
           </div>
         ))}

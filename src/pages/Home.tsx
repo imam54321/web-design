@@ -152,7 +152,7 @@ belakang atau tingkat keahlian.", `
                     key={index} 
                     name={speaker.name} 
                     role={speaker.role} 
-                    imageUrl={speaker.imageUrl} 
+                    image={speaker.imageUrl} 
                   />
                   </div> 
                 ))} 
