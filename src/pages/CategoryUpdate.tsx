@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import InputText from "../ui/InputText";
 import Button from "../components/Button";
-import { API_URL } from "../services/api";
+
 
 type CategoryForm = {
   name: string;
@@ -21,7 +21,7 @@ export default function CategoryUpdate() {
   } = useForm<CategoryForm>();
 
   useEffect(() => {
-     fetch(`${API_URL}/categories`)
+     fetch(`http://localhost:3000/categories/${id}`)
       .then((res) => res.json())
       .then((data) => {
         const category = data.data ?? data;
@@ -37,7 +37,7 @@ export default function CategoryUpdate() {
 
   const onSubmit = async (data: CategoryForm) => {
     try {
-      const response = await fetch(`${API_URL}/categories/${id}`, {
+      const response = await fetch(`http://localhost:3000/categories/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

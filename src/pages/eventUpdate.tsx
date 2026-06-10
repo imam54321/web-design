@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import InputText from "../ui/InputText";
 import Button from "../components/Button";
-import { API_URL } from "../services/api";
 
 type EventForm = {
   title: string;
@@ -39,19 +38,19 @@ export default function EventUpdate() {
   } = useForm<EventForm>();
 
   useEffect(() => {
-    fetch(`${API_URL}/categories`)
+    fetch(`http://localhost:3000/categories`)
       .then((res) => res.json())
       .then((data) => {
         setCategories(Array.isArray(data) ? data : data.data);
       });
 
-    fetch(`${API_URL}/speakers`)
+    fetch(`http://localhost:3000/speakers`)
       .then((res) => res.json())
       .then((data) => {
         setPembicara(Array.isArray(data) ? data : data.data);
       });
 
-    fetch(`${API_URL}/events/${id}`)
+    fetch(`http://localhost:3000/events/${id}`)
       .then((res) => res.json())
       .then((data) => {
         const event = data.data ?? data;
@@ -72,7 +71,7 @@ export default function EventUpdate() {
 
   const onSubmit = async (data: EventForm) => {
     try {
-      const response = await fetch(`${API_URL}/events/${id}`, {
+      const response = await fetch(`http://localhost:3000/events/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

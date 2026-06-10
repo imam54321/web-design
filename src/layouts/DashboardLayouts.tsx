@@ -41,6 +41,10 @@ export default function DashboardLayout(){
                                    <AwardIcon size = {20}/> 
                                      <Link to="/dashboard/event">Event</Link>
                             </li>
+                            <li className="flex items-center gap-3 hover:text-red-600 transition">
+                                <User size={20} />
+                                <Link to="/dashboard/user">User</Link>
+                            </li>
                         </ul>
                 </div>
                 <div>

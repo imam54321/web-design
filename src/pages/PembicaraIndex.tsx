@@ -3,7 +3,7 @@ import useInView from "../hooks/useInView";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
-import { API_URL } from "../services/api";
+
 
 type Speaker = {
   id: number;
@@ -17,7 +17,7 @@ export default function Pembicara() {
   const [speakers, setSpeakers] = useState<Speaker[]>([]);
 
   useEffect(() => {
-    fetch(`${API_URL}/speakers`)
+    fetch(`http://localhost:3000/speakers`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -35,7 +35,7 @@ export default function Pembicara() {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`${API_URL}/speakers/${id}`, {
+      const response = await fetch(`http://localhost:3000/speakers/${id}`, {
         method: "DELETE",
       });
 

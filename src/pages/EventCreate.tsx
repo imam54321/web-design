@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import InputText from "../ui/InputText";
 import Button from "../components/Button";
-import { API_URL } from "../services/api";
 
 type EventForm = {
   title: string;
@@ -36,13 +35,13 @@ export default function EventCreate() {
   } = useForm<EventForm>();
 
   useEffect(() => {
-      fetch(`${API_URL}/categories`)
+      fetch(`http://localhost:3000/categories`)
       .then((res) => res.json())
       .then((data) => {
         setCategories(Array.isArray(data) ? data : data.data);
       });
 
-    fetch(`${API_URL}/speakers`)
+    fetch(`http://localhost:3000/speakers`)
       .then((res) => res.json())
       .then((data) => {
         setSpeakers(Array.isArray(data) ? data : data.data);
@@ -63,7 +62,7 @@ export default function EventCreate() {
 
       console.log("PAYLOAD EVENT:", payload);
 
-      const response = await fetch(`${API_URL}/events`, {
+      const response = await fetch(`http://localhost:3000/events`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

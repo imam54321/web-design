@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import InputText from "../ui/InputText";
 import Button from "../components/Button";
-import { API_URL } from "../services/api";
 
 type CategoryForm = {
   name: string;
@@ -17,7 +16,7 @@ export default function CategoryCreate() {
 
   const onSubmit = async (data: CategoryForm) => {
     try {
-      const response = await fetch(`${API_URL}/categories`, {
+      const response = await fetch(`http://localhost:3000/categories`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

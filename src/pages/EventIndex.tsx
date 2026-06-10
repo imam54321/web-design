@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import { useEffect, useState } from "react";
-import { API_URL } from "../services/api";
 
 type Event = {
   id: number;
@@ -16,7 +15,7 @@ export default function EventIndex() {
   const [events, setEvents] = useState<Event[]>([]);
 
   useEffect(() => {
-    fetch(`${API_URL}/events`)
+    fetch(`http://localhost:3000/events`)
       .then((res) => res.json())
       .then((data) => {
         console.log("DATA EVENTS:", data);
@@ -33,7 +32,7 @@ export default function EventIndex() {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`${API_URL}/events`, {
+      const response = await fetch(`http://localhost:3000/events/${id}`, {
         method: "DELETE",
       });
 

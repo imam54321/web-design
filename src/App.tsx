@@ -23,6 +23,9 @@ import PembicaraUpdate from "./pages/pembicaraUpdate";
 import CategoryUpdate from "./pages/CategoryUpdate";
 import EventUpdate from "./pages/eventUpdate";
 import BiodataIndex from "./pages/BiodataIndex";
+import UserIndex from "./pages/userIndex";
+import UserEdit from "./pages/userEdit";
+import UserCreate from "./pages/useCreate";
 function App() {
   return (
     <BrowserRouter>
@@ -54,8 +57,11 @@ function App() {
                 <Route path="/dashboard/event" element={<Events/>}></Route>
                 <Route path="/dashboard/event/create" element={<EventsCreate/>}></Route>
                 <Route path="/dashboard/event/edit/:id" element={<EventUpdate />} />
+                <Route path="/dashboard/user" element={<UserIndex />} />
+                <Route path="/dashboard/user/create" element={<UserCreate />} />
+                <Route path="/dashboard/user/edit/:id" element={<UserEdit />} />
+                </Route>
                 
-              </Route>
               </Route>
         </Routes>
         

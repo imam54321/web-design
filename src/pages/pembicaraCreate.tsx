@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import InputText from "../ui/InputText";
 import Button from "../components/Button";
-import { API_URL } from "../services/api";
+
 
 type SpeakerForm = {
   name: string;
@@ -19,7 +19,7 @@ export default function PembicaraCreate() {
 
   const onSubmit = async (data: SpeakerForm) => {
     try {
-      const response = await fetch(`${API_URL}/speakers`, {
+      const response = await fetch(`http://localhost:3000/speakers`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

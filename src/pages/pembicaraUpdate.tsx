@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import InputText from "../ui/InputText";
 import Button from "../components/Button";
-import { API_URL } from "../services/api";
 
 type SpeakerForm = {
   name: string;
@@ -23,7 +22,7 @@ export default function PembicaraUpdate() {
   } = useForm<SpeakerForm>();
 
   useEffect(() => {
-    fetch(`${API_URL}/speakers/${id}`)
+    fetch(`http://localhost:3000/speakers/${id}`)
       .then((res) => res.json())
       .then((data) => {
         const speaker = data.data ?? data;
@@ -41,7 +40,7 @@ export default function PembicaraUpdate() {
 
   const onSubmit = async (data: SpeakerForm) => {
     try {
-      const response = await fetch(`${API_URL}/speakers/${id}`, {
+      const response = await fetch(`http://localhost:3000/speakers/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
